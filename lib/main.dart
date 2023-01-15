@@ -8,7 +8,8 @@ class MyApp extends StatelessWidget{
   const MyApp({Key? key}): super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(scaffoldBackgroundColor: const Color.fromRGBO(33, 33, 33, 1.0)),
       title: "Taskly",
       home: Scaffold(
 
