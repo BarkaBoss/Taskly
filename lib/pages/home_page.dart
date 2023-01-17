@@ -38,22 +38,26 @@ class _HomePageState extends State<HomePage> {
     // Task newTask = Task(content: "Workout", timestamp: DateTime.now(), done: false);
     // _box?.add(newTask.toMap());
     List tasks = _box!.values.toList();
-    return ListView.builder(itemCount: tasks.length, itemBuilder: (BuildContext _context, int index){
-      var task = Task.fromMap(tasks[index]);
-      return ListTile(
-        title: Text(
-          task.content,
-          style: TextStyle(
-            decoration: task.done ? TextDecoration.lineThrough : null,
-          ),
-        ),
-        subtitle: Text(task.timestamp.toString()),
-        trailing: Icon(
-          task.done ? Icons.check_box_outlined : Icons.check_box_outline_blank,
-          color: Colors.red,
-        ),
-      );
-    });
+    return ListView.builder(
+        itemCount: tasks.length,
+        itemBuilder: (BuildContext _context, int index) {
+          var task = Task.fromMap(tasks[index]);
+          return ListTile(
+            title: Text(
+              task.content,
+              style: TextStyle(
+                decoration: task.done ? TextDecoration.lineThrough : null,
+              ),
+            ),
+            subtitle: Text(task.timestamp.toString()),
+            trailing: Icon(
+              task.done
+                  ? Icons.check_box_outlined
+                  : Icons.check_box_outline_blank,
+              color: Colors.red,
+            ),
+          );
+        });
   }
 
   Widget _addTaskButton() {
@@ -84,7 +88,19 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             title: const Text("Add new Task"),
             content: TextField(
-              onSubmitted: (_value) {},
+              onSubmitted: (_value) {
+                if (_newTaskContent != null) {
+                  var task = Task(
+                      content: _newTaskContent!,
+                      timestamp: DateTime.now(),
+                      done: false);
+                  _box!.add(task.toMap());
+                  setState(() {
+                    _newTaskContent = null;
+                    Navigator.pop(context);
+                  });
+                }
+              },
               onChanged: (_value) {
                 setState(() {
                   _newTaskContent = _value;
