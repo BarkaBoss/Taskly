@@ -9,7 +9,9 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(scaffoldBackgroundColor: const Color.fromRGBO(33, 33, 33, 1.0)),
+      theme: ThemeData(
+        primarySwatch: Colors.red
+      ),
       title: "Taskly",
       home: Scaffold(
 
