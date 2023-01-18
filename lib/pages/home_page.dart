@@ -64,9 +64,7 @@ class _HomePageState extends State<HomePage> {
             },
             onLongPress: (){
               _box!.deleteAt(index);
-              setState(() {
-
-              });
+              setState(() {});
             },
           );
         });
