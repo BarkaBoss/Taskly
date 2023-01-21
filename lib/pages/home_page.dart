@@ -85,7 +85,9 @@ class _HomePageState extends State<HomePage> {
           _box = snapshot.data;
           return _tasksList();
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator(
+            color: Colors.red,
+          ));
         }
       },
     );
